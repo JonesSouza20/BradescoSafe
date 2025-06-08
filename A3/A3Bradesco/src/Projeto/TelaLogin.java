@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  * @author Pichau
  */
 public class TelaLogin extends javax.swing.JFrame {
-
+    TelaInicio t2 = new TelaInicio();
     /**
      * Creates new form TelaLogin
      */
@@ -131,6 +131,9 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     int contador = 0;
     
+    /**
+     *
+     */   
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         String login = txtNumero.getText();
         String senha = String.valueOf(pssSenha.getPassword());
@@ -142,6 +145,8 @@ public class TelaLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Acesso permitido");
             //abrir a próxima tela aqui, se quiser
             this.dispose(); // fecha a tela de login
+            t2.setVisible(true);
+            this.setVisible(false);
         } else {  
             contador++;
             if (contador >= 3) {
