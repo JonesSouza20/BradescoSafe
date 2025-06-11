@@ -21,9 +21,7 @@ public class SolicitarEmprestimo {
      }
      public String getSolicitar(){
         return solicitar;
-     }
-
-
-        }
+     }  
+      
     }
 
