@@ -1,4 +1,4 @@
-package Projeto;
+package br.com.a3bradesco.projeto.telas;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license

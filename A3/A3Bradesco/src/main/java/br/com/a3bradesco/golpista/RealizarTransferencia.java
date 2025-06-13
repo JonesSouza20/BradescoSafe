@@ -1,4 +1,4 @@
-package Projeto.Golpista;
+package br.com.a3bradesco.golpista;
 import java.util.Date;
 
 public class RealizarTransferencia {

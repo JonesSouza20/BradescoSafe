@@ -1,4 +1,4 @@
-package Projeto;
+package br.com.a3bradesco.projeto.telas;
 
 
 import javax.swing.JOptionPane;
