@@ -1,12 +1,12 @@
 package main.java.br.com.a3bradesco.projeto.telas;
-
+import main.java.br.com.a3bradesco.projeto.telas.TelaToken.GeradorToken;
 import javax.swing.JOptionPane;
 /**
  *
  * @author Ana Mancilha
  */
     public class TelaLogin extends javax.swing.JFrame {
-    TelaInicio t2 = new TelaInicio();
+    TelaToken tk = new TelaToken();
     
     /**
      * Creates new form TelaLogin
@@ -180,7 +180,7 @@ import javax.swing.JOptionPane;
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         String login = txtNumero.getText();
         String senha = String.valueOf(pssSenha.getPassword());
-       
+        
         String usuarioCorreto = "142536";
         String senhaCorreta = "123456";
 
@@ -188,8 +188,8 @@ import javax.swing.JOptionPane;
             JOptionPane.showMessageDialog(rootPane, "Acesso permitido");
             //abrir a próxima tela aqui, se quiser
             this.dispose(); // fecha a tela de login
-            t2.setVisible(true);
-            this.setVisible(false);
+            JOptionPane.showMessageDialog(null, GeradorToken.gerarToken());
+            tk.setVisible(true);
         } else {  
             contador++;
             if (contador >= 3) {
@@ -200,6 +200,7 @@ import javax.swing.JOptionPane;
                 txtNumero.setText("");
                 pssSenha.setText("");
             }
+            
         }
     }//GEN-LAST:event_btnEntrarActionPerformed
 
