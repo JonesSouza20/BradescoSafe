@@ -1,27 +1,22 @@
-package br.com.a3bradesco.projeto.telas;
-
+package main.java.br.com.a3bradesco.projeto.telas;
 
 import javax.swing.JOptionPane;
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-
 /**
  *
- * @author Pichau
+ * @author Ana Mancilha
  */
-public class TelaLogin extends javax.swing.JFrame {
+    public class TelaLogin extends javax.swing.JFrame {
     TelaInicio t2 = new TelaInicio();
+    
     /**
      * Creates new form TelaLogin
      */
     public TelaLogin() {
         initComponents();
     }
-
-      
+    
+    
+     
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -81,6 +76,11 @@ public class TelaLogin extends javax.swing.JFrame {
 
         btnCriar.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         btnCriar.setText("Criar conta");
+        btnCriar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCriarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlLoginLayout = new javax.swing.GroupLayout(pnlLogin);
         pnlLogin.setLayout(pnlLoginLayout);
@@ -211,6 +211,13 @@ public class TelaLogin extends javax.swing.JFrame {
 
     }//GEN-LAST:event_formWindowOpened
 
+    private void btnCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarActionPerformed
+       //inserir uma nova tela para criar a conta
+       TelaCriarConta tcc = new TelaCriarConta();
+       tcc.setVisible(true);
+
+    }//GEN-LAST:event_btnCriarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -240,6 +247,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new TelaLogin().setVisible(true);
             }

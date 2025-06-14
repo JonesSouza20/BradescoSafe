@@ -1,9 +1,5 @@
-package br.com.a3bradesco.projeto.telas;
+package main.java.br.com.a3bradesco.projeto.telas;
 //Tela de inicio
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 
 /**
  *
@@ -115,7 +111,9 @@ public class TelaInicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGolpeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGolpeActionPerformed
-        
+        TelaAlerta ta = new TelaAlerta();
+        ta.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnGolpeActionPerformed
 
     /**
