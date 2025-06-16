@@ -9,7 +9,15 @@ public class ConexaoDataBase {
     private static final String USUARIO = "postgres";
     private static final String SENHA = "browwjoh20@";
 
-    public static Connection conectar() throws SQLException {
+    static {
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("Driver JDBC não encontrado.", e);
+        }
+    }
+
+    public static Connection conectar() {
         try {
             return DriverManager.getConnection(URL, USUARIO, SENHA);
         } catch (SQLException e) {

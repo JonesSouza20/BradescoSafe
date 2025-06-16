@@ -3,16 +3,13 @@ package br.com.a3bradesco.projeto.telas;
 import br.com.a3bradesco.projeto.ConexaoDataBase;
 
 import javax.swing.*;
+import javax.swing.text.MaskFormatter;
 import java.awt.*;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.text.ParseException;
+import java.math.BigDecimal;
+import java.sql.*;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
+import br.com.a3bradesco.projeto.BancoDeDadosSimples;
+
 
 public class TelaCriarConta extends JFrame {
 
@@ -27,26 +24,43 @@ public class TelaCriarConta extends JFrame {
         lblNome = new JLabel();
         lblRg = new JLabel();
         lblCpf = new JLabel();
+        lblEmail = new JLabel();
+        lblSenha = new JLabel();
         lblNascimento = new JLabel();
         lblEndereco = new JLabel();
+
         txtNome = new JTextField();
         txtRg = new JTextField();
         txtCpf = new JTextField();
+        txtEmail = new JTextField();
+        txtSenha = new JPasswordField();
+
         spnlEndereco = new JScrollPane();
         txaEndereco = new JTextArea();
-        fmtNascimento = new JFormattedTextField();
+
+        try {
+            MaskFormatter maskNascimento = new MaskFormatter("##/##/####");
+            maskNascimento.setPlaceholderCharacter('_');
+            fmtNascimento = new JFormattedTextField(maskNascimento);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
         btnCriar = new JButton();
         btnCancelar = new JButton();
 
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Criar Nova Conta");
 
-        lblCriar.setFont(new Font("Segoe UI", 0, 24));
+        lblCriar.setFont(new Font("Segoe UI", Font.BOLD, 24));
         lblCriar.setHorizontalAlignment(SwingConstants.CENTER);
         lblCriar.setText("Criar Conta");
 
         lblNome.setText("Nome completo:");
         lblRg.setText("RG:");
         lblCpf.setText("CPF:");
+        lblEmail.setText("E-mail:");
+        lblSenha.setText("Senha:");
         lblNascimento.setText("Data de nascimento (dd/MM/yyyy):");
         lblEndereco.setText("Endereço:");
 
@@ -55,45 +69,52 @@ public class TelaCriarConta extends JFrame {
         spnlEndereco.setViewportView(txaEndereco);
 
         btnCriar.setText("Criar");
-        btnCriar.addActionListener(e -> criarConta());  // Aqui o listener está certo
+        btnCriar.addActionListener(e -> criarConta());
 
         btnCancelar.setText("Cancelar");
-        btnCancelar.addActionListener(e -> System.exit(0));
+        btnCancelar.addActionListener(e -> dispose());
 
-        GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-                jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(48, 48, 48)
-                                .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+        GroupLayout layout = new GroupLayout(jPanel1);
+        jPanel1.setLayout(layout);
+
+        layout.setHorizontalGroup(
+                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(48)
+                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                                         .addComponent(lblNome)
-                                        .addComponent(lblRg)
-                                        .addComponent(lblCpf)
-                                        .addComponent(lblNascimento)
-                                        .addComponent(lblEndereco)
                                         .addComponent(txtNome)
+                                        .addComponent(lblRg)
                                         .addComponent(txtRg)
+                                        .addComponent(lblCpf)
                                         .addComponent(txtCpf)
-                                        .addComponent(spnlEndereco, GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
-                                        .addComponent(fmtNascimento))
+                                        .addComponent(lblEmail)
+                                        .addComponent(txtEmail)
+                                        .addComponent(lblSenha)
+                                        .addComponent(txtSenha)
+                                        .addComponent(lblNascimento)
+                                        .addComponent(fmtNascimento)
+                                        .addComponent(lblEndereco)
+                                        .addComponent(spnlEndereco, GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE))
                                 .addContainerGap(55, Short.MAX_VALUE))
-                        .addGroup(GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                        .addComponent(lblCriar, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 400, GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                                .addComponent(btnCriar)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(btnCancelar)))
+                                .addComponent(btnCriar)
+                                .addGap(18)
+                                .addComponent(btnCancelar)
+                                .addContainerGap())
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(lblCriar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-                jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(30, 30, 30)
+
+        layout.setVerticalGroup(
+                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(30)
                                 .addComponent(lblCriar)
-                                .addGap(20, 20, 20)
+                                .addGap(20)
                                 .addComponent(lblNome)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtNome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -106,6 +127,14 @@ public class TelaCriarConta extends JFrame {
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtCpf, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblEmail)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtEmail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblSenha)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtSenha, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(lblNascimento)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(fmtNascimento, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -113,8 +142,8 @@ public class TelaCriarConta extends JFrame {
                                 .addComponent(lblEndereco)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(spnlEndereco, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-                                .addGap(25, 25, 25)
-                                .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addGap(25)
+                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                         .addComponent(btnCriar)
                                         .addComponent(btnCancelar))
                                 .addContainerGap(40, Short.MAX_VALUE))
@@ -126,57 +155,118 @@ public class TelaCriarConta extends JFrame {
     }
 
     private void criarConta() {
-        String nome = txtNome.getText().trim();
-        String rg = txtRg.getText().trim();
-        String cpf = txtCpf.getText().trim();
-        String dataNascimentoTexto = fmtNascimento.getText().trim();
-        String endereco = txaEndereco.getText().trim();
-
-        // Verifica se algum campo está vazio
-        if (nome.isEmpty() || rg.isEmpty() || cpf.isEmpty() || dataNascimentoTexto.isEmpty() || endereco.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos.");
-            return;
-        }
-
-        // Valida formato da data
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate nascimento;
-        try {
-            nascimento = LocalDate.parse(dataNascimentoTexto, formatter);
-        } catch (DateTimeParseException ex) {
-            JOptionPane.showMessageDialog(this, "Formato de data inválido. Use dd/MM/yyyy.");
-            return;
-        }
-
-        Date dataSql = Date.valueOf(nascimento); // yyyy-MM-dd
+        Connection conexao = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
 
         try {
-            Connection conn = ConexaoDataBase.conectar();
-            String sql = "INSERT INTO usuarios (nome, rg, cpf, nascimento, endereco, email) VALUES (?, ?, ?, ?, ?, ?)";
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1, nome);
-            stmt.setString(2, rg);
-            stmt.setString(3, cpf);
-            stmt.setDate(4, dataSql);
-            stmt.setString(5, endereco);
-            String email = "";
-            stmt.setString(6, email);
+            conexao = ConexaoDataBase.conectar();
 
-            stmt.executeUpdate();
+            String nome = txtNome.getText();
+            String rg = txtRg.getText();
+            String cpf = txtCpf.getText();
+            String email = txtEmail.getText();
+            String senha = new String(txtSenha.getPassword());
+            String nascimento = fmtNascimento.getText();
+            String endereco = txaEndereco.getText();
 
-            JOptionPane.showMessageDialog(this, "Conta criada com sucesso!");
-            conn.close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Erro ao criar conta: " + ex.getMessage());
+            if (nome.isEmpty() || rg.isEmpty() || cpf.isEmpty() || email.isEmpty() || senha.isEmpty() || nascimento.contains("_") || endereco.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos corretamente.");
+                return;
+            }
+
+            String sqlCheck = "SELECT COUNT(*) FROM usuarios WHERE cpf = ?";
+            pst = conexao.prepareStatement(sqlCheck);
+            pst.setString(1, cpf);
+            rs = pst.executeQuery();
+            if (rs.next() && rs.getInt(1) > 0) {
+                JOptionPane.showMessageDialog(null, "CPF já cadastrado.");
+                return;
+            }
+            rs.close();
+            pst.close();
+
+            String sqlInsertUser = "INSERT INTO usuarios (nome, rg, cpf, email, nascimento, endereco, status_conta, senha) VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING usuario_id";
+
+            pst = conexao.prepareStatement(sqlInsertUser);
+            pst.setString(1, nome);
+            pst.setString(2, rg);
+            pst.setString(3, cpf);
+            pst.setString(4, email);
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            java.util.Date utilDate = sdf.parse(nascimento);
+            java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+            pst.setDate(5, sqlDate);
+            pst.setString(6, endereco);
+            pst.setBoolean(7, true);
+            pst.setString(8, senha);
+
+            rs = pst.executeQuery();
+            int usuarioId = 0;
+            if (rs.next()) {
+                usuarioId = rs.getInt("usuario_id");
+            } else {
+                JOptionPane.showMessageDialog(null, "Erro ao obter ID do usuário.");
+                return;
+            }
+            rs.close();
+            pst.close();
+
+            String numeroConta = String.format("%06d", gerarNumeroConta());
+            String agencia = "0001";
+            String digitoVerificador = "0";
+            String tipoConta = "Corrente";
+            BigDecimal saldoInicial = BigDecimal.ZERO;
+            java.sql.Date dataCriacao = new java.sql.Date(System.currentTimeMillis());
+            String statusConta = "ativa";
+
+            String sqlInsertConta = "INSERT INTO contas (numero_conta, agencia, digito_verificador, tipo_conta, saldo, data_criacao, status_conta, cliente_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            pst = conexao.prepareStatement(sqlInsertConta);
+            pst.setString(1, numeroConta);
+            pst.setString(2, agencia);
+            pst.setString(3, digitoVerificador);
+            pst.setString(4, tipoConta);
+            pst.setBigDecimal(5, saldoInicial);
+            pst.setDate(6, dataCriacao);
+            pst.setString(7, statusConta);
+            pst.setInt(8, usuarioId);
+
+            int contaInserida = pst.executeUpdate();
+            if (contaInserida > 0) {
+                BancoDeDadosSimples.contas.put(numeroConta, senha);
+                JOptionPane.showMessageDialog(null, "Conta criada com sucesso!\nNúmero da conta: " + numeroConta);
+
+                // Abre a TelaToken
+                TelaToken telaToken = new TelaToken();
+                telaToken.setVisible(true);
+                this.dispose();
+            }
+
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao criar conta: " + e.getMessage());
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (pst != null) pst.close();
+                if (conexao != null) conexao.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
+    }
+
+
+    private int gerarNumeroConta() {
+        return (int) (Math.random() * 900000) + 100000;
     }
 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> new TelaCriarConta().setVisible(true));
     }
 
-    // Declaração dos componentes
+    // Componentes
     private JButton btnCancelar;
     private JButton btnCriar;
     private JFormattedTextField fmtNascimento;
@@ -187,9 +277,13 @@ public class TelaCriarConta extends JFrame {
     private JLabel lblNascimento;
     private JLabel lblNome;
     private JLabel lblRg;
+    private JLabel lblEmail;
+    private JLabel lblSenha;
     private JScrollPane spnlEndereco;
     private JTextArea txaEndereco;
     private JTextField txtCpf;
     private JTextField txtNome;
     private JTextField txtRg;
+    private JTextField txtEmail;
+    private JPasswordField txtSenha;
 }

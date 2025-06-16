@@ -1,4 +1,4 @@
-package main.java.br.com.a3bradesco.projeto.telas;
+package br.com.a3bradesco.projeto.telas;
 //Tela de inicio
 
 /**
@@ -111,7 +111,7 @@ public class TelaInicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGolpeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGolpeActionPerformed
-        TelaAlerta ta = new TelaAlerta();
+        main.java.br.com.a3bradesco.projeto.telas.TelaAlerta ta = new main.java.br.com.a3bradesco.projeto.telas.TelaAlerta();
         ta.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnGolpeActionPerformed

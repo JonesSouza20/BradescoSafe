@@ -111,7 +111,7 @@ public class TelaToken extends javax.swing.JFrame {
         if(token.equals (GeradorToken.tokenGerado) ){
             JOptionPane.showMessageDialog(rootPane, "Acesso a sua conta liberado!");
             this.dispose();
-            main.java.br.com.a3bradesco.projeto.telas.TelaInicio ti = new main.java.br.com.a3bradesco.projeto.telas.TelaInicio();
+            br.com.a3bradesco.projeto.telas.TelaInicio ti = new br.com.a3bradesco.projeto.telas.TelaInicio();
             ti.setVisible(true);
         }else{
             JOptionPane.showMessageDialog(rootPane, "Acesso Bloqueado");
