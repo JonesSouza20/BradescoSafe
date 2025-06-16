@@ -258,6 +258,7 @@ public class TelaCriarConta extends JFrame {
     }
 
 
+
     private int gerarNumeroConta() {
         return (int) (Math.random() * 900000) + 100000;
     }

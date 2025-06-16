@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import static br.com.a3bradesco.projeto.view.TelaToken.GeradorToken.tokenGerado;
+
 /**
  * Tela de Login do Banco Bradesco.
  * @author Ana Mancilha
@@ -134,7 +136,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
         pnlLogo.setBackground(new java.awt.Color(255, 30, 85));
 
-        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/resources/imagens/logobradescobranca.png"))); // NOI18N
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/logobradescobranca.png")));// NOI18N
 
         javax.swing.GroupLayout pnlLogoLayout = new javax.swing.GroupLayout(pnlLogo);
         pnlLogo.setLayout(pnlLogoLayout);
@@ -182,7 +184,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
         try {
             conexao = ConexaoDataBase.conectar();
-            String sql = "SELECT * FROM contas WHERE numero_conta = ? AND senha = ?";
+            String sql = "SELECT * FROM usuarios, contas WHERE numero_conta = ? AND senha = ?";
             pst = conexao.prepareStatement(sql);
             pst.setString(1, numeroConta);
             pst.setString(2, senha);
@@ -203,6 +205,12 @@ public class TelaLogin extends javax.swing.JFrame {
                     pssSenha.setText("");
                 }
             }
+
+            String sqlUpdate = "UPDATE usuarios SET token = ? WHERE numero_conta = ?";
+            PreparedStatement pstUpdate = conexao.prepareStatement(sqlUpdate);
+            pstUpdate.setString(1, tokenGerado);
+            pstUpdate.setString(2, numeroConta);
+            pstUpdate.executeUpdate();
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, "Erro ao tentar conectar: " + e.getMessage());
