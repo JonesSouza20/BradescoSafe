@@ -34,12 +34,17 @@ public class TelaToken extends javax.swing.JFrame {
         setTitle("Token de Verificação");
         setResizable(false);
 
+        lblTitulo.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("Validação de Token");
 
+        lblInsira.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         lblInsira.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblInsira.setText("Insira o token enviado a você:");
 
+        txtToken.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
+
+        btnValidar.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         btnValidar.setText("Validar token");
         btnValidar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
