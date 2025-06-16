@@ -1,4 +1,4 @@
-package br.com.a3bradesco.projeto.telas;
+package br.com.a3bradesco.projeto.view;
 //Tela de inicio
 
 /**

@@ -1,4 +1,4 @@
-package br.com.a3bradesco.projeto;
+package br.com.a3bradesco.projeto.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

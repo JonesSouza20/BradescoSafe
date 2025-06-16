@@ -1,7 +1,7 @@
-package br.com.a3bradesco.projeto.telas;
+package br.com.a3bradesco.projeto.view;
 import java.util.Random;
 import javax.swing.JOptionPane;
-import static br.com.a3bradesco.projeto.telas.TelaToken.GeradorToken.gerarToken;
+
 /**
  *
  * @author Ana Mancilha
@@ -111,7 +111,7 @@ public class TelaToken extends javax.swing.JFrame {
         if(token.equals (GeradorToken.tokenGerado) ){
             JOptionPane.showMessageDialog(rootPane, "Acesso a sua conta liberado!");
             this.dispose();
-            br.com.a3bradesco.projeto.telas.TelaInicio ti = new br.com.a3bradesco.projeto.telas.TelaInicio();
+            br.com.a3bradesco.projeto.view.TelaInicio ti = new br.com.a3bradesco.projeto.view.TelaInicio();
             ti.setVisible(true);
         }else{
             JOptionPane.showMessageDialog(rootPane, "Acesso Bloqueado");

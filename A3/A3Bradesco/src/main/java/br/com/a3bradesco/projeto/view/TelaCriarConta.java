@@ -1,6 +1,6 @@
-package br.com.a3bradesco.projeto.telas;
+package br.com.a3bradesco.projeto.view;
 
-import br.com.a3bradesco.projeto.ConexaoDataBase;
+import br.com.a3bradesco.projeto.util.ConexaoDataBase;
 
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
@@ -8,7 +8,7 @@ import java.awt.*;
 import java.math.BigDecimal;
 import java.sql.*;
 import java.text.SimpleDateFormat;
-import br.com.a3bradesco.projeto.BancoDeDadosSimples;
+import br.com.a3bradesco.projeto.util.BancoDeDadosSimples;
 
 
 public class TelaCriarConta extends JFrame {

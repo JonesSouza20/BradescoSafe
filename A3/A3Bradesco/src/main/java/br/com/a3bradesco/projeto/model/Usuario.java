@@ -1,4 +1,4 @@
-package br.com.a3bradesco.projeto;
+package br.com.a3bradesco.projeto.model;
 
 /**
  *

@@ -1,8 +1,7 @@
-package br.com.a3bradesco.projeto.telas;
+package br.com.a3bradesco.projeto.view;
 
-import br.com.a3bradesco.projeto.BancoDeDadosSimples;
-import br.com.a3bradesco.projeto.ConexaoDataBase;
-import br.com.a3bradesco.projeto.telas.TelaToken.GeradorToken;
+import br.com.a3bradesco.projeto.util.ConexaoDataBase;
+import br.com.a3bradesco.projeto.view.TelaToken.GeradorToken;
 import javax.swing.JOptionPane;
 import java.awt.event.ActionEvent;
 import java.sql.Connection;
