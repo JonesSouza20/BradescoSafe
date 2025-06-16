@@ -1,5 +1,5 @@
-package main.java.br.com.a3bradesco.projeto.telas;
-import main.java.br.com.a3bradesco.projeto.telas.TelaToken.GeradorToken;
+package br.com.a3bradesco.projeto.telas;
+import br.com.a3bradesco.projeto.telas.TelaToken.GeradorToken;
 import javax.swing.JOptionPane;
 /**
  *
@@ -135,7 +135,7 @@ import javax.swing.JOptionPane;
 
         pnlLogo.setBackground(new java.awt.Color(255, 30, 85));
 
-        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/java/br/com/a3bradesco/projeto/telas/imagens/logobradescobranca.png"))); // NOI18N
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/logobradescobranca.png"))); // NOI18N
 
         javax.swing.GroupLayout pnlLogoLayout = new javax.swing.GroupLayout(pnlLogo);
         pnlLogo.setLayout(pnlLogoLayout);
@@ -214,7 +214,7 @@ import javax.swing.JOptionPane;
 
     private void btnCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarActionPerformed
        //inserir uma nova tela para criar a conta
-       TelaCriarConta tcc = new TelaCriarConta();
+       br.com.a3bradesco.projeto.telas.TelaCriarConta tcc = new br.com.a3bradesco.projeto.telas.TelaCriarConta();
        tcc.setVisible(true);
 
     }//GEN-LAST:event_btnCriarActionPerformed
