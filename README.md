@@ -56,7 +56,7 @@ A3Bradesco/
 - **PostgreSQL**
 - **JDBC**
 - **Maven** (opcional)
-- **NetBeans / IntelliJ IDEA**
+- **NetBeans e IntelliJ IDEA**
 
 ---
 
