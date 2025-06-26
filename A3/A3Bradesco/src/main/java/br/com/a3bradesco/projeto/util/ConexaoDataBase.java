@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class ConexaoDataBase {
     private static final String URL = "jdbc:postgresql://localhost:5432/Data_Base_A3";
     private static final String USUARIO = "postgres";
-    private static final String SENHA = "browwjoh20@";
+    private static final String SENHA = "admin123";
 
     static {
         try {
